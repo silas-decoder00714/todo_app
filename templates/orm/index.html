@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>
+    <title>Simple Vote App</title>
+</head>
+<body>
+<h1>Topics</h1>
+<ol>
+    {% for t in topics %}
+    <li><a href="/topic/{{ t.id }}">{{ t.name }}</a></li>
+    {% endfor %}
+</ol>
+<button onclick="document.location='/newTopic'">Add Topic</button>
+</body>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Simple Vote App</title>
+    <link rel="stylesheet" type="text/css" href="../../static/index.css">
+</head>
+<body>
+<h1>Vote for {{ topic.name }}</h1>
+<form action="/topic/{{ topic_id }}/newChoice" method="post">
+    <label for="choice">New Choice</label>
+    <input type="text" id="choice" name="choice">
+    <button type="submit">Add</button>
+</form>
+<br/>
+<table>
+    <tr>
+        <th>Number</th>
+        <th>Name</th>
+        <th>Votes</th>
+        <th>Actions</th>
+    </tr>
+    {% for v in votes %}
+        <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ v.choice_name }}</td>
+        <td>{{ v.choice_count }}</td>
+        <td>
+            <form action="/topic/{{ topic_id }}/vote" method="post">
+                <input type="text" name="choice" id="choice" hidden value="{{ v.id }}">
+                <button type="submit">vote</button>
+            </form>
+        </td>
+        </tr>
+    {% endfor %}
+</table>
+<br/>
+<button type="button" onclick="document.location='/'">Back</button>
+</body>
